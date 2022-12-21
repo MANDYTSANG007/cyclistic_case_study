@@ -85,8 +85,13 @@ colnames(Nov_22)
 
 ```
 **Combine datasets** <br>
-
-
+Combine all 12 datasets into a single data frame.
+```
+all_trips <- bind_rows(
+    Dec_21, Jan_22, Feb_22, Mar_22, Apr_22, May_22, 
+    Jun_22, Jul_22, Aug_22, Sep_22, Oct_22, Nov_22
+)
+```
 
 ## Data Visualization Process
 
