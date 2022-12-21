@@ -28,12 +28,28 @@ Moreno, the director of marketing, has set a clear goal: Design marketing strate
 
 ## Data Cleaning Process
 **Description** <br>
-For the purpose of this study, only data collected between December 2021 - November 2022 will be assessed. Please note that Cyclistic is a fictional company;the dataset has been made available by Motivate International Inc., which operates the City of Chicago's Divvy bicycle sharing service. The license to use this dataset can be found [here.](https://ride.divvybikes.com/data-license-agreement) <br>
+For the purpose of this study, only data collected between December 2021 - November 2022 will be assessed. Please note that Cyclistic is a fictional company; the dataset has been made available by Motivate International Inc., which operates the City of Chicago's Divvy bicycle sharing service. The license to use this dataset can be found [here.](https://ride.divvybikes.com/data-license-agreement) <br>
 
 **Install and load required packages** <br>
 ```
 install.packages("tidyverse")
 library(tidyverse)
+```
+
+**Upload raw datasets** <br>
+```
+Dec_21 <- read.csv("./Downloads/Cyclistic Case Study/202112-divvy-tripdata.csv")
+Jan_22 <- read.csv("./Downloads/Cyclistic Case Study/202201-divvy-tripdata.csv")
+Feb_22 <- read.csv("./Downloads/Cyclistic Case Study/202202-divvy-tripdata.csv")
+Mar_22 <- read.csv("./Downloads/Cyclistic Case Study/202203-divvy-tripdata.csv")
+Apr_22 <- read.csv("./Downloads/Cyclistic Case Study/202204-divvy-tripdata.csv")
+May_22 <- read.csv("./Downloads/Cyclistic Case Study/202205-divvy-tripdata.csv")
+Jun_22 <- read.csv("./Downloads/Cyclistic Case Study/202206-divvy-tripdata.csv")
+Jul_22 <- read.csv("./Downloads/Cyclistic Case Study/202207-divvy-tripdata.csv")
+Aug_22 <- read.csv("./Downloads/Cyclistic Case Study/202208-divvy-tripdata.csv")
+Sep_22 <- read.csv("./Downloads/Cyclistic Case Study/202209-divvy-publictripdata.csv")
+Oct_22 <- read.csv("./Downloads/Cyclistic Case Study/202210-divvy-tripdata.csv")
+Nov_22 <- read.csv("./Downloads/Cyclistic Case Study/202211-divvy-tripdata.csv")
 ```
 
 ## Data Visualization Process
