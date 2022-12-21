@@ -52,6 +52,27 @@ Oct_22 <- read.csv("./Downloads/Cyclistic Case Study/202210-divvy-tripdata.csv")
 Nov_22 <- read.csv("./Downloads/Cyclistic Case Study/202211-divvy-tripdata.csv")
 ```
 
+**Preview data** <br>
+Preview the data to perform data consistancy check. 
+```
+str(Dec_21)
+str(Jan_22)
+str(Feb_22)
+str(Mar_22)
+str(Apr_22)
+str(May_22)
+str(Jun_22)
+str(Jul_22)
+str(Aug_22)
+str(Sep_22)
+str(Oct_22)
+str(Nov_22)
+```
+
+**Combine datasets** <br>
+
+
+
 ## Data Visualization Process
 
 
