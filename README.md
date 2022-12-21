@@ -68,7 +68,22 @@ str(Sep_22)
 str(Oct_22)
 str(Nov_22)
 ```
+Perform colume names check to ensure consistancy.
+```
+colnames(Dec_21)
+colnames(Jan_22)
+colnames(Feb_22)
+colnames(Mar_22)
+colnames(Apr_22)
+colnames(May_22)
+colnames(Jun_22)
+colnames(Jul_22)
+colnames(Aug_22)
+colnames(Sep_22)
+colnames(Oct_22)
+colnames(Nov_22)
 
+```
 **Combine datasets** <br>
 
 
