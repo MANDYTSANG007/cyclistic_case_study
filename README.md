@@ -53,7 +53,7 @@ Nov_22 <- read.csv("./Downloads/Cyclistic Case Study/202211-divvy-tripdata.csv")
 ```
 
 **Preview data** <br>
-Preview the data to perform data consistancy check. 
+Preview the data to perform data consistancy check, such as data structure and column names. 
 ```
 str(Dec_21)
 str(Jan_22)
@@ -82,8 +82,8 @@ colnames(Aug_22)
 colnames(Sep_22)
 colnames(Oct_22)
 colnames(Nov_22)
-
 ```
+
 **Combine datasets** <br>
 Combine all 12 datasets into a single data frame.
 ```
@@ -91,6 +91,23 @@ all_trips <- bind_rows(
     Dec_21, Jan_22, Feb_22, Mar_22, Apr_22, May_22, 
     Jun_22, Jul_22, Aug_22, Sep_22, Oct_22, Nov_22
 )
+```
+
+**Prepare dataset** <br>
+Convert started_at and ended_at data type from "char" to "POSIXct" type to help with time manipulation. Dates store in the POSIX format are more accurate compare to the builtin as.Date function. After the convertion is completed, arrange data in order by started_at to make it easier to analyze.
+```
+all_trips$started_at <- as.POSIXct(
+    all_trips$started_at,
+    format = "%Y-%m-%d %H:%M:%S"
+)
+
+all_trips$ended_at <- as.POSIXct(
+    all_trips$ended_at,
+    format = "%Y-%m-%d %H:%M:%S"
+)
+
+all_trips <- all_trips %>%
+    arrange(started_at)
 ```
 
 ## Data Visualization Process
