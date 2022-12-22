@@ -124,8 +124,49 @@ all_trips$ride_length <- difftime(
 all_trips$ride_length <- as.numeric(
     as.character(all_trips$ride_length)
 )
+```
+
+**Create columns for date, month, day, and year** <br>
+Separate each date part for later visualization that plots by date, year, month, and day.
+```
+#Add year column
+all_trips$year <- format(
+    all_trips$started_at,
+    "%Y"
+)
+
+#Add month column
+all_trips$month <- format(
+    all_trips$started_at,
+    "%m"
+)
+
+#Add day column
+all_trips$day <- format(
+    all_trips$started_at,
+    "%d"
+)
+
+#Add day of week column
+all_trips$day_of_week <- format(
+    all_trips$started_at,
+    "%A"
+)
+
+#Add date column
+all_trips$date <- format(
+    all_trips$started_at,
+    "%Y:%m:%d"
+)
+
+#Add time column
+all_trips$time <- format(
+    all_trips$started_at,
+    "%H:%M:%S"
+)
 
 ```
+
 
 ## Data Visualization Process
 
