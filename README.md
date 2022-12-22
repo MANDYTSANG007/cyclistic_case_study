@@ -164,11 +164,39 @@ all_trips$time <- format(
     all_trips$started_at,
     "%H:%M:%S"
 )
+```
 
+**Inspect dataset** <br>
+Inspect the dataset to see if any unexpected items that were out of normal scope. 
+```
+arrange(all_trips, ride_length)
+```
+
+**Remove ride length rows that were less than zero** <br>
+After inspecting the dataset, notice there were a few instances where the ride lengths had negative values. Rows with ride length less than zero should be removed.
+```
+#Filter data by ride_length
+all_trips_v2 <- all_trips %>%
+    filter(!ride_length < 0)
+```
+
+**Remove rows that had no station name** <br>
+In addition, some station names and station IDs were missing. These data should also be removed from the dataset.
+```
+#Filter data by start_station_name and end_station_name
+all_trips_v2 <- all_trips_v2 %>%
+    filter(
+        !(is.na(start_station_name) | start_station_name == "")
+    ) %>%
+    filter(
+        !(is.na(end_station_name) | end_station_name == "")
+    )
 ```
 
 
+
 ## Data Visualization Process
+
 
 
 ## References
