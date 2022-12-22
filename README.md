@@ -110,9 +110,27 @@ all_trips <- all_trips %>%
     arrange(started_at)
 ```
 
+**Calculate ride length** <br>
+Calculate the length of each ride to get a better sense of the data layout. Convert ride_length to numeric for calculation.
+```
+# Add and calculate the ride_length column
+all_trips$ride_length <- difftime(
+    all_trips$ended_at,
+    all_trips$started_at,
+    units = "secs"
+)
+
+# Convert ride_length to numeric
+all_trips$ride_length <- as.numeric(
+    as.character(all_trips$ride_length)
+)
+
+```
+
 ## Data Visualization Process
 
 
-
+## References
+* UC Berkeley Department of Statistics (https://www.stat.berkeley.edu/~s133/dates.html)
 
 
