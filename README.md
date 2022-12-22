@@ -172,6 +172,11 @@ Inspect the dataset to see if any unexpected items that were out of normal scope
 arrange(all_trips, ride_length)
 ```
 
+Inspect the dataset to see if any duplicated ride ID as ride_id column should be unique on each ride.
+```
+sum(duplicated(all_trips$ride_id)
+```
+
 **Remove ride length rows that were less than zero** <br>
 After inspecting the dataset, notice there were a few instances where the ride lengths had negative values. Rows with ride length less than zero should be removed.
 ```
