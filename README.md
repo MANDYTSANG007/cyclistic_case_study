@@ -94,7 +94,7 @@ all_trips <- bind_rows(
 ```
 
 **Prepare dataset** <br>
-Convert started_at and ended_at data type from "char" to "POSIXct" type to help with time manipulation. Dates store in the POSIX format are more accurate compare to the builtin as.Date function. After the convertion is completed, arrange data in order by started_at to make it easier to analyze.
+Convert started_at and ended_at data type from "char" to "POSIXct" type to help with time manipulation. Dates store in the POSIX format are more accurate compare to the builtin as.Date function. After the conversion is completed, arrange data in order by started_at to make it easier to analyze.
 ```
 all_trips$started_at <- as.POSIXct(
     all_trips$started_at,
