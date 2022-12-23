@@ -177,7 +177,7 @@ Inspect the dataset to see if any duplicated ride ID as ride_id column should be
 sum(duplicated(all_trips$ride_id)
 ```
 
-**Remove ride length rows that were less than zero** <br>
+**Remove ride length rows with negative values** <br>
 After inspecting the dataset, notice there were a few instances where the ride lengths had negative values. Rows with ride length less than zero should be removed.
 ```
 #Filter data by ride_length
@@ -185,7 +185,7 @@ all_trips_v2 <- all_trips %>%
     filter(!ride_length < 0)
 ```
 
-**Remove rows that had no station name** <br>
+**Remove rows without station name** <br>
 In addition, some station names and station IDs were missing. These data should also be removed from the dataset.
 ```
 #Filter data by start_station_name and end_station_name
@@ -198,10 +198,27 @@ all_trips_v2 <- all_trips_v2 %>%
     )
 ```
 
+**Get ride length summary** <br>
+Summarize the ride length to get a better sense of the data layout.
+```
+summary(all_trips_v2$ride_length)
+```
 
+**Save file** <br>
+Save a .csv file copy for future data exploration.
+```
+fwrite(
+    all_trips_v2,
+    "./Downloads/Cyclistic Case Study/all_trips_v2.csv",
+    col.names = TRUE,
+    row.names = FALSE
+)
+```
 
 ## Data Visualization Process
 
+
+## Note
 
 
 ## References
