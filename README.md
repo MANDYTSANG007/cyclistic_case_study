@@ -326,7 +326,7 @@ View the map.
 ```
 p1
 ```
-
+![alt text](./image/the-most-popular-station.gif)
 
 
 ## References
