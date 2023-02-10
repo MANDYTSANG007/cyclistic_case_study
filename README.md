@@ -94,7 +94,7 @@ all_trips <- bind_rows(
 ```
 
 **Prepare dataset** <br>
-Convert started_at and ended_at data type from "char" to "POSIXct" type to help with time manipulation. Dates store in the POSIX format are more accurate compare to the builtin as.Date function. After the conversion is completed, arrange data in order by started_at to make it easier to analyze.
+Use $ operator to extract the started_at and ended_at columns from the data frame. Then, we convert started_at and ended_at data type from "char" to "POSIXct" type to help with time manipulation. Dates store in the POSIX format are more accurate compare to the built-in as.Date function. After the conversion is completed, arrange the started_at column in ascending order to make it easier to analyze.
 ```
 all_trips$started_at <- as.POSIXct(
     all_trips$started_at,
@@ -141,6 +141,12 @@ all_trips$month <- format(
     "%m"
 )
 
+#Add week column
+all_trips$week <- format(
+    all_trips$started_at,
+    "%W"
+)
+
 #Add day column
 all_trips$day <- format(
     all_trips$started_at,
@@ -172,7 +178,7 @@ Inspect the dataset to see if any unexpected items that were out of normal scope
 arrange(all_trips, ride_length)
 ```
 
-Inspect the dataset to see if any duplicated ride ID as ride_id column should be unique on each ride.
+Inspect the dataset to see if any duplicated ride ID because the ride_id column should be unique on each ride. 
 ```
 sum(duplicated(all_trips$ride_id)
 ```
@@ -216,12 +222,117 @@ fwrite(
 ```
 
 ## Data Visualization Process
+**Install and load visualization tools** <br>
+```
+install.packages("leaflet")
+install.packages("viridis")
+install.packages("ggpubr")
+library(leaflet)
+library(viridis)
+library(ggpubr)
+```
 
+**Create map dataset** <br>
+To better organize the data, a map data frame is created to see which station was the most popular.
+```
+map_data <- all_trips_v2 %>%
+    select(
+        start_station_name,
+        start_lat,
+        start_lng
+    ) %>%
+    group_by(
+        start_station_name
+    ) %>%
+    mutate(
+        n_trips = n()
+    ) %>%
+    distinct(
+        start_station_name,
+        .keep_all = TRUE
+    )
+```
 
-## Note
+Get a summary to check the range of n_trips. 
+```
+summary(map_data$n_trips)
+```
+
+From the n_trips summary, the range was between 0 to 71956. Set up a sequence of value that will be shown on the legend to indicate number of trips.
+```
+bin_range <- seq(0, 80000, by = 10000)
+```
+
+Set up a color palette. Call the colorBin function from leaflet to create a new palette function.
+```
+mypalette <- colorBin(
+    palette = "viridis",
+    domain = map_data$n_trips,
+    na.color = "transparent",
+    bins = bin_range
+)
+```
+
+Create map text labels.
+```
+text_label <- paste(
+    "Station name: ", map_data$start_station_name, "<br/>",
+    "Number of trips: ", map_data$n_trips, sep = ""
+) %>%
+lapply(htmltools::HTML)
+```
+
+Create leaflet.
+```
+p1 <- leaflet(map_data) %>%
+    addTiles() %>%
+
+    # Use setView method to manipulate the map widget
+    setView(
+        lng = -87.6051, lat = 41.8919, zoom = 11.5
+    ) %>%
+    addProviderTiles("Esri.WorldGrayCanvas") %>%
+
+    # Add circle markers to the map
+    addCircleMarkers(
+        ~start_lng, ~start_lat,
+        fillColor = ~mypalette(n_trips),
+        fillOpacity = 0.7,
+        color = "white",
+        radius = 8,
+        stroke = FALSE,
+        label = mytext,
+        labelOptions = labelOptions(
+            style = list(
+                "font-weight" = "normal,
+                padding = "2px 8px"
+            ),
+        textsize = "12px",
+        direction = "auto"
+        )
+    ) %>%
+
+    # Add a legend to the map.
+    addLegend(
+        pal = mypalette,
+        values = ~n_trips,
+        opacity = 0.8,
+        title = "Number of trips",
+        position = "bottomright"
+    )
+```
+
+View the map.
+```
+p1
+```
+
 
 
 ## References
 * UC Berkeley Department of Statistics (https://www.stat.berkeley.edu/~s133/dates.html)
+* rdrr.io (https://rdrr.io/cran/leaflet/man/colorNumeric.html)
+* Leaflet (https://rstudio.github.io/leaflet/colors.html)
+* Package Leaflet (https://cran.r-project.org/web/packages/leaflet/leaflet.pdf)
 
 
