@@ -1,6 +1,7 @@
 # Cyclistic Case Study
 
 ## Summary
+This case study is part of the Google Data Analytics Professional Certificate capstone project. R and RStudio has been used in this project. 
 
 ## Table of Contents
 * [Final Report](#final-report)
@@ -10,6 +11,16 @@
 
 
 ## Final Report
+The interactive map demonstrates that the stations around the Navy Pier are the most popular in Chicago. Streeter Dr and Grand Ave had the most trip count with a total of 71,956 trips. This indicates that the majority of the Cyclistic users ride for leisure as many tourist attractions are located around the central area. 
+
+The map also highlights a small proportion of Cyclistic users use the service around the residential areas, which indicates they are less likely to use bikes to commute to or from work.
+
+Recommendations:
+As some of the connections between weather and Cyclistic use is yet unknown, ongoing analysis is underway. 
+The two possible preliminary recommendations are as follows:
+
+1. Digital campaign to show benefits of joining annual memberships.
+2. Automated reminders via email to observe the price benefit of annual memberships based on riders’ frequency of usage.
 
 
 ## Case Study Brief
